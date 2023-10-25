@@ -1,0 +1,18 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* styles.css */
+
+/* Estilos de ejemplo utilizando clases de Tailwind CSS */
+.bg-red-500 {
+    background-color: #EF4444;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.p-4 {
+    padding: 1rem;
+}
