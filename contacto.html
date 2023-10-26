@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Contacto - Pastelería Dulce Sabor</title>
+    </head>
+    <body>
+        <header>
+            <h1>Pastelería Dulce Sabor</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h2>Contáctanos</h2>
+            <p>¿Tienes alguna pregunta o comentario? ¡Nos encantaría saber de ti! Llena el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
+            <form action="enviar.php" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </main>
+        <footer>
+            <p>Pastelería Dulce Sabor - Todos los derechos reservados</p>
+        </footer>
+    </body>
+</html>
