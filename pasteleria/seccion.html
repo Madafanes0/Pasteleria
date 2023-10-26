@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Pasteles</title>
     <link rel="icon" type="image/x-icon" href="D:\TEC\pasteleria\payaso.ico">
+    <style>
+        #carrito {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            padding: 20px;
+            border-left: 1px solid #ddd;
+            display: none;
+        }
+    
+        #items-carrito {
+            list-style: none;
+            padding: 0;
+        }
+    
+        #items-carrito li {
+            margin: 10px 0;
+        }
+    </style>
+    
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
@@ -19,6 +42,8 @@
             <li><a href="#" class="text-white hover:underline">Catálogo</a></li>
             <li><a href="#" class="text-white hover:underline">Contacto</a></li>
             <li><a href="#" class="text-white hover:underline">Carrito de Compras</a></li>
+            <li><a href="#" class="text-white hover:underline" id="ver-carrito">Ver Carrito</a></li>
+
         </ul>
     </nav>
 
@@ -29,9 +54,7 @@
             <div>
                 <h2 class="text-4xl font-extrabold tracking-tight text-gray-900">Pastel de chocolate</h2>
                 <div class="mt-4 prose prose-user text-lg leading-relaxed text-gray-500 sm:text-xl">"Un deleite irresistible: Sumérgete en la tentación del chocolate con nuestro exquisito pastel que despierta todos tus sentidos." Delicioso pastel de chocolate con relleno suave y decoración de crema.</div>
-                <button class="bg-red-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-full hover:rounded-lg transition duration-300 ease-in-out">
-                    Agregar al Carrito
-                </button>
+                <button class="bg-red-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-full hover:rounded-lg transition duration-300 ease-in-out" data-product="Pastel de Chocolate">Agregar al Carrito</button>
             </div>
             <!-- CTA -->
             <div></div>
@@ -53,9 +76,7 @@
         <!-- Feature -->
         <h2 class="text-4xl font-extrabold tracking-tight text-gray-900">Pastel de Fresa</h2>
         <div class="mt-4 prose prose-user text-lg leading-relaxed text-gray-500 sm:text-xl">"Frescura en cada bocado: Nuestro pastel de fresa te sumergirá en la dulzura de las fresas frescas y la suavidad de la crema batida." Exquisito pastel de fresa con capas de fresas frescas y crema batida.</div>
-        <button class="bg-red-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-full hover:rounded-lg transition duration-300 ease-in-out">
-            Agregar al Carrito
-        </button>
+        <button class="bg-red-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-full hover:rounded-lg transition duration-300 ease-in-out" data-product="Pastel de Chocolate">Agregar al Carrito</button>
     </div>
 
     <!-- Imagen a la derecha -->
@@ -73,9 +94,7 @@
         <div>
             <h2 class="text-4xl font-extrabold tracking-tight text-gray-900">Pastel de vainilla</h2>
             <div class="mt-4 prose prose-user text-lg leading-relaxed text-gray-500 sm:text-xl">"Pureza en cada bocado: Deléitate con la suavidad celestial de nuestro pastel de vainilla, una delicia que te enamorará." El pastel de vainilla es un postre clásico que cautiva con su esponjosa textura y su sabor dulce y reconfortante. Perfecto para cualquier ocasión.</div>
-            <button class="bg-red-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-full hover:rounded-lg transition duration-300 ease-in-out">
-                Agregar al Carrito
-            </button>
+            <button class="bg-red-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-full hover:rounded-lg transition duration-300 ease-in-out" data-product="Pastel de Chocolate">Agregar al Carrito</button>
             
         </div>
         <!-- CTA -->
@@ -90,6 +109,50 @@
         </div>
     </div>
 </div>
+
+<div id="carrito" class="hidden">
+    <h2>Carrito de Compras</h2>
+    <ul id="items-carrito">
+        <!-- Aquí se agregarán los elementos del carrito -->
+    </ul>
+</div>
+
+<script>
+    const verCarritoBtn = document.getElementById('ver-carrito');
+    const carrito = document.getElementById('carrito');
+    const itemsCarrito = document.getElementById('items-carrito');
+    
+    // Registra los productos en el carrito
+    const carritoItems = [];
+
+    // Manejador de clic en "Ver Carrito"
+    verCarritoBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        carrito.classList.toggle('hidden');
+        actualizarCarrito();
+    });
+
+    // Manejador de clic en "Agregar al Carrito"
+    document.addEventListener('click', function (e) {
+        if (e.target && e.target.tagName === 'BUTTON' && e.target.dataset.product) {
+            const producto = e.target.dataset.product;
+            carritoItems.push(producto);
+            actualizarCarrito();
+        }
+    });
+
+    // Función para actualizar el carrito en la interfaz
+    function actualizarCarrito() {
+        itemsCarrito.innerHTML = ''; // Limpiar la lista de elementos
+
+        carritoItems.forEach((item) => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            itemsCarrito.appendChild(li);
+        });
+    }
+</script>
+
 
 
 </body>
